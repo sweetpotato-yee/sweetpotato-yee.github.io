@@ -34,7 +34,7 @@
         <div class="login-container" id="login">
             <div class="top">
                 <div class="title"></div>
-            </div><img id="qrCode" alt="QR Code" src=""></img>
+            </div><img id="qrCode" style="weight=70%;" alt="QR Code" src=""></img>
                 </div>
             </div>   
     <!--Menu Function-->
@@ -62,7 +62,7 @@
         if (left !== null) {
             if (left > 0) {
                 titleDiv.innerHTML = `<header>如果你不是機器人，請描瞄QR Code （剩下 ${left} 次）</header>`;
-                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsweetpotato-yee.github.io/unlock?left=${left - 1}&chs=70x70`;
+                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsweetpotato-yee.github.io/unlock?left=${left - 1}&chs=150x150`;
 
                 qrCodeImg.src = qrCodeUrl;
             } else {
