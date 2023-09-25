@@ -55,17 +55,14 @@
  const urlParams = new URLSearchParams(queryString);
  const left = urlParams.get('left');
  
- // 获取显示内容的 <div> 元素
  const titleDiv = document.querySelector('.title');
  
- // 获取 QR Code 图片的 <img> 元素
  const qrCodeImg = document.getElementById('qrCode');
  
         if (left !== null) {
-            // 如果 left 参数存在
             if (left > 0) {
                 titleDiv.innerHTML = `<header>如果你不是機器人，請描瞄QR Code （剩下 ${left} 次）</header>`;
-                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsweetpotato-yee.github.io/unlock?left=${left - 1}&chs=150x150`;
+                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsweetpotato-yee.github.io/unlock?left=${left - 1}&chs=70x70`;
 
                 qrCodeImg.src = qrCodeUrl;
             } else {
