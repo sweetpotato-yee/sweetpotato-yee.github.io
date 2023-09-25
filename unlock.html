@@ -33,8 +33,8 @@
         <!------------------- login form -------------------------->
         <div class="login-container" id="login">
             <div class="top">
-                <header><div class="title"></div></header>
-            </div>
+                <div class="title"></div>
+            </div><img id="qrCode" alt="QR Code" src=""></img>
                 </div>
             </div>   
     <!--Menu Function-->
@@ -52,19 +52,27 @@
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script>
  const queryString = window.location.search;
-        const urlParams = new URLSearchParams(queryString);
-        const left = urlParams.get('left');
-
-        const titleDiv = document.querySelector('.title');
-
+ const urlParams = new URLSearchParams(queryString);
+ const left = urlParams.get('left');
+ 
+ // 获取显示内容的 <div> 元素
+ const titleDiv = document.querySelector('.title');
+ 
+ // 获取 QR Code 图片的 <img> 元素
+ const qrCodeImg = document.getElementById('qrCode');
+ 
         if (left !== null) {
+            // 如果 left 参数存在
             if (left > 0) {
-                titleDiv.innerHTML = `<p>如果您不是機器人，請掃瞄QR Code （剩下${left} 次）</p>`;
+                titleDiv.innerHTML = `<header>如果你不是機器人，請描瞄QR Code （剩下 ${left} 次）</header>`;
+                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fexample.com/unlock?left=${left - 1}&chs=150x150`;
+
+                qrCodeImg.src = qrCodeUrl;
             } else {
-                titleDiv.innerHTML = `<p>自己算 懶惰 上課有聽就會</p>`;
+                titleDiv.innerHTML = `<header>自己算 專心上課</header>`;
             }
-        } else 
-            titleDiv.innerHTML = `<p>詐欺是違法的</p>`;
+        } else {
+            titleDiv.innerHTML = `<header>詐欺是違法的</header>`;
         }
 </script>
 </body>
