@@ -61,7 +61,7 @@
  
         if (left !== null) {
             if (left > 0) {
-                titleDiv.innerHTML = `<header>如果你不是機器人，請描瞄QR Code （剩下 ${left} 次）</header>`;
+                titleDiv.innerHTML = `<header>如果你不是機器人，請掃瞄QR Code （剩下 ${left} 次）</header>`;
                 const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fsweetpotato-yee.github.io/unlock?left=${left - 1}&chs=150x150`;
 
                 qrCodeImg.src = qrCodeUrl;
