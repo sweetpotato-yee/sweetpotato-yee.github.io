@@ -37,7 +37,7 @@
                 <div class="title"></div>
             </div>
                 </div>
-            </div>   
+            </div>   </div>
     <!--Menu Function-->
     <script>
     function MenuFunction() {
@@ -52,31 +52,9 @@
     </script>
         <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
 <script>
- const queryString = window.location.search;
- const urlParams = new URLSearchParams(queryString);
- const left = urlParams.get('left');
- 
- // 获取显示内容的 <div> 元素
- const titleDiv = document.querySelector('.title');
- 
- // 获取 QR Code 图片的 <img> 元素
- const qrCodeImg = document.getElementById('qrCode');
- 
-        if (left !== null) {
-            // 如果 left 参数存在
-            if (left > 0) {
-                titleDiv.innerHTML = `<header>如果你不是機器人，請描瞄QR Code （剩下 ${left} 次）</header>`;
-                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fexample.com/unlock?left=${left - 1}&chs=150x150`;
-
-                qrCodeImg.src = qrCodeUrl;
-            } else {
-                titleDiv.innerHTML = `<header>自己算 專心上課</header>`;
-            }
-        } else {
-            titleDiv.innerHTML = `<header>正在跳轉</header>`;
-            sleep 3000;
-            window.location.replace(`https://enctc-my.sharepoint.com/:f:/g/personal/wh105005_ntpc_edu_tw/EkzQDLdOYiNDsMg6CFXPgvQBINzE_cOteazWL7YlRbdmTQ?e=b3YcYL`);
-        }
+const titleDiv = document.querySelector('.title');
+titleDiv.innerHTML = `<header>正在跳轉</header>`;
+sleep 3000;
+window.locaton.href = `https://enctc-my.sharepoint.com/:f:/g/personal/wh105005_ntpc_edu_tw/EkzQDLdOYiNDsMg6CFXPgvQBINzE_cOteazWL7YlRbdmTQ?e=b3YcYL`;
 </script>
-</body>
-</html>
+</body></html>
