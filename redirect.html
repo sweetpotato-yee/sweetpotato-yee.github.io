@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="zh-TW" translate="no">
+<head>
+    <meta http-equiv="refresh" content="3" url="https://enctc-my.sharepoint.com/:f:/g/personal/wh105005_ntpc_edu_tw/EkzQDLdOYiNDsMg6CFXPgvQBINzE_cOteazWL7YlRbdmTQ?e=b3YcYL">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+    <title>Magic</title>
+</head>
+<body>
+ <div class="wrapper">
+    <nav class="nav">
+        <div class="nav-logo"><a href="/" style="text-decoration-line: none;">
+            <p>Magic</p>
+        </a></div>
+        <div class="nav-menu" id="navMenu">
+            <ul>
+                <li><a href="#" class="link active"> 首頁 </a></li>
+                <li><a href="#" class="link"> 分類 </a></li>
+                <li><a href="#" class="link"> 面板 </a></li>
+                <li><a href="#" class="link"> 關於 </a></li>
+            </ul>
+        </div>
+        <div class="nav-menu-btn">
+            <i class="bx bx-menu" onclick="MenuFunction()"></i>
+        </div>
+    </nav>
+
+<!----------------------------- Form box ----------------------------------->    
+    <div class="form-box" id="form-box">
+        
+        <!------------------- login form -------------------------->
+        <div class="login-container" id="login">
+            <div class="top">
+                <div class="title"></div>
+            </div>
+                </div>
+            </div>   
+    <!--Menu Function-->
+    <script>
+    function MenuFunction() {
+     var i = document.getElementById("navMenu");
+ 
+     if(i.className === "nav-menu") {
+         i.className += " responsive";
+     } else {
+         i.className = "nav-menu";
+     }
+    }
+    </script>
+        <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+<script>
+ const queryString = window.location.search;
+ const urlParams = new URLSearchParams(queryString);
+ const left = urlParams.get('left');
+ 
+ // 获取显示内容的 <div> 元素
+ const titleDiv = document.querySelector('.title');
+ 
+ // 获取 QR Code 图片的 <img> 元素
+ const qrCodeImg = document.getElementById('qrCode');
+ 
+        if (left !== null) {
+            // 如果 left 参数存在
+            if (left > 0) {
+                titleDiv.innerHTML = `<header>如果你不是機器人，請描瞄QR Code （剩下 ${left} 次）</header>`;
+                const qrCodeUrl = `https://chart.googleapis.com/chart?cht=qr&chl=https%3A%2F%2Fexample.com/unlock?left=${left - 1}&chs=150x150`;
+
+                qrCodeImg.src = qrCodeUrl;
+            } else {
+                titleDiv.innerHTML = `<header>自己算 專心上課</header>`;
+            }
+        } else {
+            titleDiv.innerHTML = `<header>正在跳轉</header>`;
+        }
+</script>
+</body>
+</html>
