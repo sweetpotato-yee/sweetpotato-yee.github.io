@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Magic平方數測驗</title>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    #question {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .dialer-container {
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+
+  #phoneNumber {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 10px;
+      font-size: 16px;
+      margin-bottom: 10px;
+  }
+
+  .dialer-keyboard {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-gap: 5px;
+      max-width: 300px; 
+      margin: 0 auto; 
+  }
+  .dialer-keyboard button {
+  padding: 10px;
+  font-size: 16px;
+  width: 100%;
+  border: none;
+  background-color: rgba(83, 208, 67, 0.921); 
+  color: #fff; 
+  cursor: pointer; 
+  border-radius: 5px;
+}x
+
+.submitName {
+  padding: 10px;
+  font-size: 16px;
+  width: 20%;
+  border: none;
+  background-color: darkgray;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+  .dialer-keyboard button {
+      padding: 10px;
+      font-size: 16px;
+      width: 100%;
+  }
+
+  #resultWindow {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      background-color: #333;
+      color: #fff;
+      padding: 10px;
+      border-radius: 5px;
+    }
+ #Window {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+ }
+  </style>
+</head>
+<body style="font-family:Microsoft JhengHei;">
+  <center><div id="question"></div> <div id="resultWindow"></div><div id="Window"></div>
+  <div class="dialer-container">
+    <input type="text" id="phoneNumber" placeholder="請輸入答案">
+    <div class="dialer-keyboard" id="dialerKeyboard">
+        <button onclick="appendNumber('1')">1</button>
+        <button onclick="appendNumber('2')">2</button>
+        <button onclick="appendNumber('3')">3</button>
+        <button onclick="appendNumber('4')">4</button>
+        <button onclick="appendNumber('5')">5</button>
+        <button onclick="appendNumber('6')">6</button>
+        <button onclick="appendNumber('7')">7</button>
+        <button onclick="appendNumber('8')">8</button>
+        <button onclick="appendNumber('9')">9</button>
+        <button onclick="appendNumber('0')">0</button>
+        <button onclick="clearNumber()"><i class="material-icons">&#xe14a;</i></button>
+        <button onclick="Submit()">Dial</button>
+    </div>
+  </div>
+  <script>
+    function getRandomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    let answer;
+    let correct = 0;
+    let wrong = 0;
+    var seconds = 0;
+
+    function generateQuestion() {
+      const questionType = getRandomInt(1, 2);
+
+      if (questionType === 1) {
+        const randomNumber = getRandomInt(22, 41);
+        answer = Math.pow(randomNumber, 2)
+        return { question: `${randomNumber} 的平方是多少？`, answer: answer};
+      } else {
+        const randomNumber = Math.pow(getRandomInt(22, 41), 2)
+        answer = Math.sqrt(randomNumber)
+        return { question: `${randomNumber} 是哪一個數的平方？`, answer: answer};
+      }
+    }
+
+    function updateQuestion() {
+      const { question } = generateQuestion();
+      document.getElementById('question').textContent = question;
+    }
+        let phoneNumberInput = document.getElementById('phoneNumber');
+
+    function appendNumber(number) {
+        phoneNumberInput.value += number;
+    }
+
+    function clearNumber() {
+        phoneNumberInput.value = phoneNumberInput.value.slice(0, -1)
+    }
+
+    function Submit() {
+        checkAnswer()
+    }
+    
+    function checkAnswer() {
+      const userAnswer = parseFloat(phoneNumberInput.value);
+
+      if (userAnswer === answer) {
+        correct += 1;
+        showStatus(true);
+      } else {
+        wrong += 1
+        showStatus(false);
+      }
+      phoneNumberInput.value = null;
+      updateQuestion();
+      updateResultWindow("正確" + correct + "個 錯誤" + wrong + "個 分數" + Math.floor((correct-wrong)/seconds*100000));
+    } 
+
+    function updateResultWindow(message) {
+      document.getElementById('resultWindow').style.display = "block"
+        document.getElementById('resultWindow').textContent = message;
+      }
+
+      var timeoutId;
+    function showStatus(isCorrect) {
+    var windowElement = document.getElementById('Window');
+    clearTimeout(timeoutId);
+    
+    if (isCorrect) {
+        windowElement.textContent = "正確";
+        windowElement.style.color = "green";
+    } else {
+        windowElement.textContent = "錯誤 解答:" + answer;
+        windowElement.style.color = "red";
+    };
+
+    windowElement.style.display = "block";
+
+    timeoutId = setTimeout(function () {
+        windowElement.style.display = "none";
+    }, 3000);
+  };
+      
+  window.onload = function() {
+        function updateTimer() {
+            seconds++;
+            timer = seconds
+        }
+        
+        setInterval(updateTimer, 1000);
+    };
+    function init() {
+      updateQuestion();
+      document.getElementById('Window').style.display = "none";
+      document.getElementById('resultWindow').style.display = "none";
+    };
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+  </center>
+</body>
+</html>
